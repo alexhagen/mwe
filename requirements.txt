@@ -2,3 +2,4 @@ sys
 os
 texlive
 pdf2svg
+Pygments
