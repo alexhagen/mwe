@@ -1,4 +1,4 @@
-all: tests
+all: docs
 
 docs: FORCE
 	mkdir -p ~/pages/mwe/; \
