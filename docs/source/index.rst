@@ -5,7 +5,7 @@
 
 .. include:: README.rst
 
-.. include:: test.rst
+.. include:: test.html
 
 mwe
 =======
