@@ -36,21 +36,40 @@ class mwe(object):
             self.add_to_body(text)
 
     def add_to_body(self, text):
-        self.body += text
+        """ adds valid LaTeX source into the body
+
+            :param text: valid LaTeX source to add to the end of the current
+                document body text.
+        """
+        self.body += '\n' + text + '\n'
+        return self
 
     def show(self, alone=False):
-        """ some docstring here. """
+        """ exports and shows the result of the mwe.
+
+        ``show`` will export the LaTeX ``mwe`` into an svg and show it below in
+        the Jupyter notebook.
+        :param alone: Whether to show **only** the result (``True``), or show it
+            side by side with the LaTeX source (``False``).  Default ``False``.
+        """
         self.export()
         if alone:
             self.show_alone()
         else:
             self.show_side_by_side()
+        return self
 
     def show_alone(self):
         """ some docstring here. """
 
     def export(self):
-        """ some docstring here. """
+        """ compiles the LaTeX into an ``.svg``
+
+        ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf`` and
+        then uses ``pdf2svg`` to convert this into an svg. The LaTeX source is
+        written into the ``/tmp`` directory, but the ``mwe.pdf`` and ``mwe.svg``
+        files will be compiled in the current directory.
+        """
         tex_str = ''
         optstr = 'letterpaper'
         tex_str += "\documentclass[%s]{%s}\n" % (optstr, self.texcls)
@@ -70,9 +89,14 @@ class mwe(object):
         #print cmdstr
         os.system(cmdstr)
         os.system('rm -f mwe.aux mwe.log')
+        return self
 
     def show_side_by_side(self):
-        """ some docstring here. """
+        """ shows the source code and the result of the ``mwe``
+
+        ``show_side_by_side`` exports the ``mwe`` into an ``.svg``, and then
+        shows it in the Jupyter notebook as a side-by-side of the source code,
+        highlighted with Pygments, and the ``.svg`` resulting page."""
         with open("mwe.svg", 'r') as f:
             svgstr = f.read()
         f.close()
