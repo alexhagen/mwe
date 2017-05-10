@@ -107,6 +107,7 @@ class mwe(object):
               <style>
                 %s
               </style>
+	      <div style='width:100%%'>
               <div style='float:left; width:45%%'>
                 <pre>
                     %s
@@ -114,7 +115,8 @@ class mwe(object):
               </div>
               <div style='float:right; width:45%%; border: solid 1px black;'>
                 %s
-              </div>""" % (HtmlFormatter().get_style_defs('.highlight'), formatted_tex_str, svgstr)
+              </div>
+	      </div>""" % (HtmlFormatter().get_style_defs('.highlight'), formatted_tex_str, svgstr)
         return display(HTML(htmlstr))
 
 """
