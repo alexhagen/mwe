@@ -14,15 +14,13 @@ class mwe(object):
     ``mwe`` starts a latex document with changeable class, options, and premble.
     The text is then passed into the body of the document.
 
-    Args:
-        text: Valid LaTeX source code (be careful of escape characters)
-        texcls: LaTeX class name, default 'article'
-        texclsopts: LaTeX options passed to the LaTeX class, as a dict.  For
-            keyword arguments, use {"keyword": "arg"}, and for singular
-            arguments, use {"argument": None}.
-        preamble: Valid LaTeX source code
-    Returns:
-        An ``mwe`` object for additional editing or exporting.
+    :param text: Valid LaTeX source code (be careful of escape characters)
+    :param texcls: LaTeX class name, default 'article'
+    :param texclsopts: LaTeX options passed to the LaTeX class, as a dict.  For
+        keyword arguments, use {"keyword": "arg"}, and for singular
+        arguments, use {"argument": None}.
+    :param preamble: Valid LaTeX source code
+    :returns: An ``mwe`` object for additional editing or exporting.
     """
     def __init__(self, text=None,
                  texcls="article", texclsopts={"letterpaper": None},

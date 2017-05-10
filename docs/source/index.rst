@@ -6,12 +6,12 @@
 Welcome to mwe's documentation!
 ===============================
 
-Contents:
+mwe
+=======
 
-.. toctree::
-   :maxdepth: 2
-
-
+.. autoclass:: mwe.mwe
+  :members:
+  :show-inheritance:
 
 Indices and tables
 ==================
@@ -20,3 +20,7 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+Contents:
+
+.. toctree::
+   :maxdepth: 2
