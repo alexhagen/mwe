@@ -1,5 +1,5 @@
 
-.. code:: ipython2
+.. code:: python
 
     %load_ext autoreload
     %autoreload 2
