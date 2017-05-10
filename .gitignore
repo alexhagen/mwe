@@ -2,6 +2,7 @@ _build/
 docs/_build/*
 README.rst
 test.rst
+test.html
 
 # Mac Files
 .DS_Store
