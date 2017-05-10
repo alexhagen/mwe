@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>mwe &#8212; mwe a documentation</title>
+    <title>&lt;no title&gt; &#8212; mwe a documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -51,7 +51,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           mwe</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
@@ -68,7 +68,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="#">Alex Hagen <b class="caret"></b></a>
+     href="index.html">Alex Hagen <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"></ul>
@@ -82,10 +82,7 @@
      href="#">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"
       role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">mwe</a></li>
-<li><a class="reference internal" href="#id1">mwe</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+      aria-labelledby="dLabelLocalToc"><ul class="simple">
 </ul>
 </ul>
 </li>
@@ -101,7 +98,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/index.rst.txt"
+  <a href="_sources/test.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -125,10 +122,7 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="mwe">
-<h1>mwe<a class="headerlink" href="#mwe" title="Permalink to this headline">¶</a></h1>
-<p>LaTeX MWEs in Jupyter Notebook for faster prototyping and sharing</p>
-<div class="code ipython2 highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+  <div class="code ipython2 highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
 <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 <span class="kn">import</span> <span class="nn">mwe</span>
 
@@ -1985,107 +1979,7 @@ Hi!
 </g>
 </svg>
 
-              </div></div>
-<div class="section" id="id1">
-<h1>mwe<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="mwe.mwe">
-<em class="property">class </em><code class="descclassname">mwe.</code><code class="descname">mwe</code><span class="sig-paren">(</span><em>text=None</em>, <em>texcls='article'</em>, <em>texclsopts={'letterpaper': None}</em>, <em>preamble=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
-<p><code class="docutils literal"><span class="pre">mwe</span></code> initializes a minimum working example for LaTeX.</p>
-<p><code class="docutils literal"><span class="pre">mwe</span></code> starts a latex document with changeable class, options, and premble.
-The text is then passed into the body of the document.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>text</strong> &#8211; Valid LaTeX source code (be careful of escape characters)</li>
-<li><strong>texcls</strong> &#8211; LaTeX class name, default &#8216;article&#8217;</li>
-<li><strong>texclsopts</strong> &#8211; LaTeX options passed to the LaTeX class, as a dict.  For
-keyword arguments, use {&#8220;keyword&#8221;: &#8220;arg&#8221;}, and for singular
-arguments, use {&#8220;argument&#8221;: None}.</li>
-<li><strong>preamble</strong> &#8211; Valid LaTeX source code</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An <code class="docutils literal"><span class="pre">mwe</span></code> object for additional editing or exporting.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="mwe.mwe.add_to_body">
-<code class="descname">add_to_body</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe.add_to_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe.add_to_body" title="Permalink to this definition">¶</a></dt>
-<dd><p>adds valid LaTeX source into the body</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> &#8211; valid LaTeX source to add to the end of the current
-document body text.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="mwe.mwe.export">
-<code class="descname">export</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe.export" title="Permalink to this definition">¶</a></dt>
-<dd><p>compiles the LaTeX into an <code class="docutils literal"><span class="pre">.svg</span></code></p>
-<p><code class="docutils literal"><span class="pre">export</span></code> calls <code class="docutils literal"><span class="pre">pdflatex</span></code> to convert the <code class="docutils literal"><span class="pre">mwe</span></code> into a <code class="docutils literal"><span class="pre">.pdf</span></code> and
-then uses <code class="docutils literal"><span class="pre">pdf2svg</span></code> to convert this into an svg. The LaTeX source is
-written into the <code class="docutils literal"><span class="pre">/tmp</span></code> directory, but the <code class="docutils literal"><span class="pre">mwe.pdf</span></code> and <code class="docutils literal"><span class="pre">mwe.svg</span></code>
-files will be compiled in the current directory.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="mwe.mwe.show">
-<code class="descname">show</code><span class="sig-paren">(</span><em>alone=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe.show" title="Permalink to this definition">¶</a></dt>
-<dd><p>exports and shows the result of the mwe.</p>
-<p><code class="docutils literal"><span class="pre">show</span></code> will export the LaTeX <code class="docutils literal"><span class="pre">mwe</span></code> into an svg and show it below in
-the Jupyter notebook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alone</strong> &#8211; Whether to show <strong>only</strong> the result (<code class="docutils literal"><span class="pre">True</span></code>), or show it
-side by side with the LaTeX source (<code class="docutils literal"><span class="pre">False</span></code>).  Default <code class="docutils literal"><span class="pre">False</span></code>.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="mwe.mwe.show_alone">
-<code class="descname">show_alone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe.show_alone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe.show_alone" title="Permalink to this definition">¶</a></dt>
-<dd><p>some docstring here.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="mwe.mwe.show_side_by_side">
-<code class="descname">show_side_by_side</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe.show_side_by_side"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe.show_side_by_side" title="Permalink to this definition">¶</a></dt>
-<dd><p>shows the source code and the result of the <code class="docutils literal"><span class="pre">mwe</span></code></p>
-<p><code class="docutils literal"><span class="pre">show_side_by_side</span></code> exports the <code class="docutils literal"><span class="pre">mwe</span></code> into an <code class="docutils literal"><span class="pre">.svg</span></code>, and then
-shows it in the Jupyter notebook as a side-by-side of the source code,
-highlighted with Pygments, and the <code class="docutils literal"><span class="pre">.svg</span></code> resulting page.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-
+              </div>
 
     </div>
       
