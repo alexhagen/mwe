@@ -1,6 +1,11 @@
 all: docs
 
 docs: FORCE
+	pandoc README.md -o docs/README.rst; \
+	cd docs/; \
+	sphinx-apidoc -e -f -M -o ./ ../; \
+	git add *.rst; \
+	git commit -am "$(shell git log -1 --pretty=%B | tr -d '\n')"; \
 	mkdir -p ~/pages/mwe/; \
 	cd ~/pages/mwe/; \
 	git rm -r *; \

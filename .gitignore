@@ -1,5 +1,6 @@
 _build/
 docs/_build/*
+README.rst
 
 # Mac Files
 .DS_Store
