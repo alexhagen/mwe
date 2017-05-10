@@ -1,6 +1,7 @@
 _build/
 docs/_build/*
 README.rst
+test.rst
 
 # Mac Files
 .DS_Store
