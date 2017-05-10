@@ -2,7 +2,7 @@ all: docs
 
 docs: FORCE
 	pandoc README.md -o docs/source/README.rst; \
-	jupyter nbconvert --execute --to html --css /mwe/_static/bootstrap.css test.ipynb; \
+	jupyter nbconvert --execute --to HTML --css /mwe/_static/bootstrap.css test.ipynb; \
 	mv test.html docs/source/test.html; \
 	cd docs/; \
 	sphinx-apidoc -e -f -M -o ./ ../; \
