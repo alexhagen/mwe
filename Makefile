@@ -2,6 +2,8 @@ all: docs
 
 docs: FORCE
 	pandoc README.md -o docs/source/README.rst; \
+	jupyter nbconvert --to RST test.ipynb; \
+	mv test.rst docs/source/test.rst; \
 	cd docs/; \
 	sphinx-apidoc -e -f -M -o ./ ../; \
 	git add *.rst; \

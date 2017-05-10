@@ -49,6 +49,7 @@ class mwe(object):
 
         ``show`` will export the LaTeX ``mwe`` into an svg and show it below in
         the Jupyter notebook.
+        
         :param alone: Whether to show **only** the result (``True``), or show it
             side by side with the LaTeX source (``False``).  Default ``False``.
         """
