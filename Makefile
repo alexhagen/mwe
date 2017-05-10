@@ -7,7 +7,7 @@ docs: FORCE
 	mkdir -p ~/pages/mwe/; \
 	cd ~/code/mwe/docs/; \
 	make html; \
-	cp -r _build/html/* ~/pages/mwe/; \
+	cp -r build/html/* ~/pages/mwe/; \
 	cd ~/pages/mwe/; \
 	touch .nojekyll; \
 	git add * .nojekyll; \
