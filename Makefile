@@ -1,7 +1,7 @@
 all: docs
 
 docs: FORCE
-	pandoc README.md -o docs/README.rst; \
+	pandoc README.md -o docs/source/README.rst; \
 	cd docs/; \
 	sphinx-apidoc -e -f -M -o ./ ../; \
 	git add *.rst; \
