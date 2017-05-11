@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mwe &#8212; mwe a documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.6/journal/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     'a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          mwe</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="http://alexhagen.github.io">Alex Hagen</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Alex Hagen <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for mwe</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Latex</span><span class="p">,</span> <span class="n">Javascript</span>
+<span class="kn">from</span> <span class="nn">IPython.core.magic</span> <span class="k">import</span> <span class="p">(</span><span class="n">register_line_magic</span><span class="p">,</span> <span class="n">register_cell_magic</span><span class="p">,</span>
+                                <span class="n">register_line_cell_magic</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pygments</span> <span class="k">import</span> <span class="n">highlight</span>
+<span class="kn">from</span> <span class="nn">pygments.lexers</span> <span class="k">import</span> <span class="n">TexLexer</span>
+<span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="k">import</span> <span class="n">HtmlFormatter</span>
+
+<div class="viewcode-block" id="mwe"><a class="viewcode-back" href="../index.html#mwe.mwe">[docs]</a><span class="k">class</span> <span class="nc">mwe</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; ``mwe`` initializes a minimum working example for LaTeX.</span>
+
+<span class="sd">    ``mwe`` starts a latex document with changeable class, options, and premble.</span>
+<span class="sd">    The text is then passed into the body of the document.</span>
+
+<span class="sd">    :param text: Valid LaTeX source code (be careful of escape characters)</span>
+<span class="sd">    :param texcls: LaTeX class name, default &#39;article&#39;</span>
+<span class="sd">    :param texclsopts: LaTeX options passed to the LaTeX class, as a dict.  For</span>
+<span class="sd">        keyword arguments, use {&quot;keyword&quot;: &quot;arg&quot;}, and for singular</span>
+<span class="sd">        arguments, use {&quot;argument&quot;: None}.</span>
+<span class="sd">    :param preamble: Valid LaTeX source code</span>
+<span class="sd">    :returns: An ``mwe`` object for additional editing or exporting.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">texcls</span><span class="o">=</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">texclsopts</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;letterpaper&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                 <span class="n">preamble</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span> <span class="o">=</span> \
+            <span class="sd">&quot;&quot;&quot;%% preamble here \n&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">preamble</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span> <span class="o">+=</span> <span class="n">preamble</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">texcls</span> <span class="o">=</span> <span class="n">texcls</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">texclsopts</span> <span class="o">=</span> <span class="n">texclsopts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_to_body</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<div class="viewcode-block" id="mwe.add_to_body"><a class="viewcode-back" href="../index.html#mwe.mwe.add_to_body">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; adds valid LaTeX source into the body</span>
+
+<span class="sd">            :param text: valid LaTeX source to add to the end of the current</span>
+<span class="sd">                document body text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="mwe.show"><a class="viewcode-back" href="../index.html#mwe.mwe.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alone</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; exports and shows the result of the mwe.</span>
+
+<span class="sd">        ``show`` will export the LaTeX ``mwe`` into an svg and show it below in</span>
+<span class="sd">        the Jupyter notebook.</span>
+
+<span class="sd">        :param alone: Whether to show **only** the result (``True``), or show it</span>
+<span class="sd">            side by side with the LaTeX source (``False``).  Default ``False``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">alone</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_alone</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_side_by_side</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="mwe.show_alone"><a class="viewcode-back" href="../index.html#mwe.mwe.show_alone">[docs]</a>    <span class="k">def</span> <span class="nf">show_alone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; some docstring here. &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="mwe.export"><a class="viewcode-back" href="../index.html#mwe.mwe.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; compiles the LaTeX into an ``.svg``</span>
+
+<span class="sd">        ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf`` and</span>
+<span class="sd">        then uses ``pdf2svg`` to convert this into an svg. The LaTeX source is</span>
+<span class="sd">        written into the ``/tmp`` directory, but the ``mwe.pdf`` and ``mwe.svg``</span>
+<span class="sd">        files will be compiled in the current directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tex_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">optstr</span> <span class="o">=</span> <span class="s1">&#39;letterpaper&#39;</span>
+        <span class="n">tex_str</span> <span class="o">+=</span> <span class="s2">&quot;\documentclass[</span><span class="si">%s</span><span class="s2">]{</span><span class="si">%s</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">optstr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">texcls</span><span class="p">)</span>
+        <span class="n">tex_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span>
+        <span class="n">tex_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">begin</span><span class="si">{document}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">tex_str</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">tex_str</span> <span class="o">+=</span> <span class="s2">&quot;\end</span><span class="si">{document}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tex_str</span> <span class="o">=</span> <span class="n">tex_str</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/mwe.tex&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tex_str</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">cmdstr</span> <span class="o">=</span> <span class="s2">&quot;pdflatex /tmp/mwe.tex --output-dir=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cwd</span>
+        <span class="c1">#print cmdstr</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmdstr</span><span class="p">)</span>
+        <span class="n">cmdstr</span> <span class="o">=</span> <span class="s2">&quot;pdf2svg mwe.pdf mwe.svg&quot;</span>
+        <span class="c1">#print cmdstr</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmdstr</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;rm -f mwe.aux mwe.log&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="mwe.show_side_by_side"><a class="viewcode-back" href="../index.html#mwe.mwe.show_side_by_side">[docs]</a>    <span class="k">def</span> <span class="nf">show_side_by_side</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; shows the source code and the result of the ``mwe``</span>
+
+<span class="sd">        ``show_side_by_side`` exports the ``mwe`` into an ``.svg``, and then</span>
+<span class="sd">        shows it in the Jupyter notebook as a side-by-side of the source code,</span>
+<span class="sd">        highlighted with Pygments, and the ``.svg`` resulting page.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mwe.svg&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">svgstr</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">formatted_tex_str</span> <span class="o">=</span> <span class="n">highlight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tex_str</span><span class="p">,</span> <span class="n">TexLexer</span><span class="p">(),</span> <span class="n">HtmlFormatter</span><span class="p">())</span>
+        <span class="n">htmlstr</span> <span class="o">=</span> \
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">              &lt;style&gt;</span>
+<span class="sd">                %s</span>
+<span class="sd">              &lt;/style&gt;</span>
+<span class="sd">	      &lt;div style=&#39;float: left; width:100%%&#39;&gt;</span>
+<span class="sd">              &lt;div style=&#39;float:left; width:49%%&#39;&gt;</span>
+<span class="sd">                &lt;pre&gt;</span>
+<span class="sd">                    %s</span>
+<span class="sd">                &lt;/pre&gt;</span>
+<span class="sd">              &lt;/div&gt;</span>
+<span class="sd">              &lt;div style=&#39;float:right; width:49%%; border: solid 1px black;&#39;&gt;</span>
+<span class="sd">                &lt;img src=&#39;data:image/svg+xml;charset=UTF-8,%s&#39; width=&quot;100%%&quot;/&gt;</span>
+<span class="sd">              &lt;/div&gt;</span>
+<span class="sd">	      &lt;/div&gt;&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">HtmlFormatter</span><span class="p">()</span><span class="o">.</span><span class="n">get_style_defs</span><span class="p">(</span><span class="s1">&#39;.highlight&#39;</span><span class="p">),</span> <span class="n">formatted_tex_str</span><span class="p">,</span> <span class="n">svgstr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">htmlstr</span><span class="p">))</span></div></div>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@register_cell_magic</span>
+<span class="sd">def mwe(line, cell):</span>
+<span class="sd">    &quot; Some docstring here &quot;</span>
+<span class="sd">    # process class and class options from linemagic</span>
+<span class="sd">    # Now make the mwe</span>
+<span class="sd">    currentmwe = mwe(cell, texcls, texclsopts, preamble)</span>
+<span class="sd">    # Now show side by side</span>
+<span class="sd">    mwe.show()</span>
+<span class="sd">    return line, cell</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, Alex Hagen.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
