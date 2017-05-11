@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>mwe &mdash; mwe a documentation</title>
+    <title>mwe &#8212; mwe a documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -20,7 +20,8 @@
         VERSION:     'a',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,7 +32,8 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="mwe a documentation" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -69,9 +71,7 @@
      href="#">Alex Hagen <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul class="simple">
-</ul>
-</ul>
+      aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
                 <li class="dropdown">
@@ -101,7 +101,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/index.txt"
+  <a href="_sources/index.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -128,27 +128,13 @@
   <div class="section" id="mwe">
 <h1>mwe<a class="headerlink" href="#mwe" title="Permalink to this headline">¶</a></h1>
 <p>LaTeX MWEs in Jupyter Notebook for faster prototyping and sharing</p>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
-</head>
-<body>
-
-</body>
-</html>
 </div>
 <div class="section" id="id1">
 <h1>mwe<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mwe.mwe">
 <em class="property">class </em><code class="descclassname">mwe.</code><code class="descname">mwe</code><span class="sig-paren">(</span><em>text=None</em>, <em>texcls='article'</em>, <em>texclsopts={'letterpaper': None}</em>, <em>preamble=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mwe.html#mwe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mwe.mwe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p><code class="docutils literal"><span class="pre">mwe</span></code> initializes a minimum working example for LaTeX.</p>
 <p><code class="docutils literal"><span class="pre">mwe</span></code> starts a latex document with changeable class, options, and premble.
 The text is then passed into the body of the document.</p>
@@ -234,14 +220,12 @@ highlighted with Pygments, and the <code class="docutils literal"><span class="p
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
 </div>
 </div>
 
@@ -258,7 +242,7 @@ highlighted with Pygments, and the <code class="docutils literal"><span class="p
     </p>
     <p>
         &copy; Copyright 2017, Alex Hagen.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.<br/>
     </p>
   </div>
 </footer>
