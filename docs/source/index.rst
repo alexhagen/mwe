@@ -5,8 +5,8 @@
 
 .. include:: README.rst
 
-.. raw:: html
-   :file: test.html
+.. include:: test.html
+
 mwe
 =======
 
