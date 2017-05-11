@@ -7,15 +7,15 @@
 
 .. include:: test.rst
 
-mwe
-=======
+Class Documentation
+-------------------
 
 .. autoclass:: mwe.mwe
   :members:
   :show-inheritance:
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

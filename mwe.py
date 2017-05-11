@@ -49,7 +49,7 @@ class mwe(object):
 
         ``show`` will export the LaTeX ``mwe`` into an svg and show it below in
         the Jupyter notebook.
-        
+
         :param alone: Whether to show **only** the result (``True``), or show it
             side by side with the LaTeX source (``False``).  Default ``False``.
         """
@@ -107,14 +107,14 @@ class mwe(object):
               <style>
                 %s
               </style>
-	      <div style='width:100%%'>
-              <div style='float:left; width:45%%'>
+	      <div style='float: left; width:100%%'>
+              <div style='float:left; width:49%%'>
                 <pre>
                     %s
                 </pre>
               </div>
-              <div style='float:right; width:45%%; border: solid 1px black;'>
-                %s
+              <div style='float:right; width:49%%; border: solid 1px black;'>
+                <img src='data:image/svg+xml;charset=UTF-8,%s' width="100%%"/>
               </div>
 	      </div>""" % (HtmlFormatter().get_style_defs('.highlight'), formatted_tex_str, svgstr)
         return display(HTML(htmlstr))

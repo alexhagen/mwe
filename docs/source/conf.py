@@ -134,8 +134,7 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("Examples", "examples"),
-        ("Link", "http://example.com", True),
+        ("Alex Hagen", "http://alexhagen.github.io", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
@@ -170,7 +169,7 @@ html_theme_options = {
 
     # Location of link to source.
     # Options are "nav" (default), "footer" or anything else to exclude.
-    'source_link_position': "nav",
+    'source_link_position': None,
 
     # Bootswatch (http://bootswatch.com/) theme.
     #
