@@ -5,7 +5,8 @@
 
 .. include:: README.rst
 
-.. include:: test.rst
+.. raw:: html
+   :file: test.html
 
 Class Documentation
 -------------------
