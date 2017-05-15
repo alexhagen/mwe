@@ -2,8 +2,8 @@ all: docs publish
 
 docs: FORCE
 	pandoc README.md -o docs/source/README.rst; \
-	jupyter nbconvert test.ipynb --to rst --execute; \
-	mv test.rst docs/source/test.rst; \
+	jupyter nbconvert test.ipynb --to html --template basic --execute; \
+	mv test.html docs/source/test.html; \
 	cd docs/; \
 	sphinx-apidoc -e -f -M -o ./ ../; \
 	make html
