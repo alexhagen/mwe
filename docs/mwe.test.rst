@@ -1,5 +1,5 @@
-mwe.test module
-===============
+mwe\.test module
+================
 
 .. automodule:: mwe.test
     :members:

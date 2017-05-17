@@ -117,8 +117,8 @@ todo_include_todos = True
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'bootstrap'
-print sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+html_static_path = ['_static']
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
     #'navbar_title': "Demo",
@@ -181,6 +181,7 @@ html_theme_options = {
     # Values: "3" (default) or "2" (in quotes)
     'bootstrap_version': "3",
 }
+
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.

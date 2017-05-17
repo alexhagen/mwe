@@ -1,5 +1,5 @@
-mwe.mwe module
-==============
+mwe\.mwe module
+===============
 
 .. automodule:: mwe.mwe
     :members:
