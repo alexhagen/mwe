@@ -1,12 +1,4 @@
-{# Import the theme's layout. #}
-{% extends "!layout.html" %}
-
-{# Custom CSS overrides #}
-{% set bootswatch_css_custom = ['_static/bootstrap.css'] %}
-
-{% block header %}
-  {{ super() }}
-  <style>
+<style>
   div.input_prompt {color: #9b703f;}
   div.output_prompt {color: #142735;}
   div.output_area pre {font-weight: normal; color: #142735;}
@@ -33,5 +25,4 @@
   span.navbar-version {
     margin-top: 18px;
   }
-  </style>
-{% endblock %}
+</style>
