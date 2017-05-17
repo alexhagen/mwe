@@ -7,7 +7,7 @@ use it from the python API. A Jupyter "magic" API is coming soon.
 
 First we have to import the package
 
-.. code:: python
+.. code:: ipython2
 
     import mwe
 
@@ -15,14 +15,14 @@ Then, we think about what we want in our preamble. For this MWE, we only
 need the package ``lipsum``, which provides some latin dummy text to
 make it easy to write long documents.
 
-.. code:: python
+.. code:: ipython2
 
     preamble = "\usepackage{lipsum}"
 
 Then, we'll have to define the actual body of the document. I want to
 show some of the possible things you could show.
 
-.. code:: python
+.. code:: ipython2
 
     body = """
         Hi!
@@ -37,7 +37,7 @@ the package, and I'm looking for a solution.
 Finally, we create our mwe object using the preamble and body, and we
 show it.
 
-.. code:: python
+.. code:: ipython2
 
     test = mwe.mwe(body, preamble=preamble)
     
@@ -98,8 +98,10 @@ show it.
     .highlight .mh { color: #666666 } /* Literal.Number.Hex */
     .highlight .mi { color: #666666 } /* Literal.Number.Integer */
     .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+    .highlight .sa { color: #BA2121 } /* Literal.String.Affix */
     .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
     .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+    .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
     .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
     .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
     .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -110,15 +112,17 @@ show it.
     .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
     .highlight .ss { color: #19177C } /* Literal.String.Symbol */
     .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+    .highlight .fm { color: #0000FF } /* Name.Function.Magic */
     .highlight .vc { color: #19177C } /* Name.Variable.Class */
     .highlight .vg { color: #19177C } /* Name.Variable.Global */
     .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+    .highlight .vm { color: #19177C } /* Name.Variable.Magic */
     .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
                   </style>
     	      <div style='float: left; width:100%'>
                   <div style='float:left; width:49%'>
                     <pre>
-                        <div class="highlight"><pre><span class="k">\documentclass</span><span class="na">[letterpaper]</span><span class="nb">{</span>article<span class="nb">}</span>
+                        <div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="na">[letterpaper]</span><span class="nb">{</span>article<span class="nb">}</span>
     <span class="c">%% preamble here </span>
     <span class="k">\usepackage</span><span class="nb">{</span>lipsum<span class="nb">}</span>
     <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
@@ -2522,7 +2526,7 @@ show it.
 
 .. parsed-literal::
 
-    <mwe.mwe at 0x2af21d8f02d0>
+    <mwe.mwe at 0x10541ff90>
 
 
 
