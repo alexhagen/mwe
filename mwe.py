@@ -44,7 +44,7 @@ class mwe(object):
         self.body += '\n' + text + '\n'
         return self
 
-    def show(self, alone=False):
+    def show(self, alone=False, **kwargs):
         """ exports and shows the result of the mwe.
 
         ``show`` will export the LaTeX ``mwe`` into an svg and show it below in
@@ -53,7 +53,7 @@ class mwe(object):
         :param alone: Whether to show **only** the result (``True``), or show it
             side by side with the LaTeX source (``False``).  Default ``False``.
         """
-        self.export()
+        self.export(**kwargs)
         if alone:
             self.show_alone()
         else:
@@ -62,8 +62,17 @@ class mwe(object):
 
     def show_alone(self):
         """ some docstring here. """
+        with open("%s.svg" % self.filename, 'r') as f:
+            svgstr = f.read()
+        f.close()
+        htmlstr = \
+            """
+              <div style='width:80%%; border: solid 1px black;'>
+                <img src='data:image/svg+xml;charset=UTF-8,%s' width="100%%"/>
+              </div>""" % (svgstr)
+        return display(HTML(htmlstr))
 
-    def export(self):
+    def export(self, filename='mwe', engine='pdflatex'):
         """ compiles the LaTeX into an ``.svg``
 
         ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf`` and
@@ -71,25 +80,32 @@ class mwe(object):
         written into the ``/tmp`` directory, but the ``mwe.pdf`` and ``mwe.svg``
         files will be compiled in the current directory.
         """
+        self.filename = filename
         tex_str = ''
-        optstr = 'letterpaper'
+        optstr = ''
+        for key, val in self.texclsopts.iteritems():
+            if val is None:
+                optstr += '%s,' % key
+            else:
+                optstr += '%s=%s,' % (key, val)
+        optstr = optstr[:-1]
         tex_str += "\documentclass[%s]{%s}\n" % (optstr, self.texcls)
         tex_str += "%s\n" % self.preamble
         tex_str += "\\begin{document}\n"
         tex_str += self.body + "\n"
         tex_str += "\end{document}\n"
         self.tex_str = tex_str
-        with open("/tmp/mwe.tex", 'w') as f:
+        with open("/tmp/%s.tex" % filename, 'w') as f:
             f.write(tex_str)
         f.close()
         cwd = os.getcwd()
-        cmdstr = "pdflatex /tmp/mwe.tex --output-dir=%s" % cwd
+        cmdstr = "%s /tmp/%s.tex --output-dir=%s" % (engine, filename, cwd)
         #print cmdstr
         os.system(cmdstr)
-        cmdstr = "pdf2svg mwe.pdf mwe.svg"
+        cmdstr = "pdf2svg %s.pdf %s.svg" % (filename, filename)
         #print cmdstr
         os.system(cmdstr)
-        os.system('rm -f mwe.aux mwe.log')
+        #os.system('rm -f %s.aux %s.log' % (filename, filename))
         return self
 
     def show_side_by_side(self):
@@ -98,7 +114,7 @@ class mwe(object):
         ``show_side_by_side`` exports the ``mwe`` into an ``.svg``, and then
         shows it in the Jupyter notebook as a side-by-side of the source code,
         highlighted with Pygments, and the ``.svg`` resulting page."""
-        with open("mwe.svg", 'r') as f:
+        with open("%s.svg" % self.filename, 'r') as f:
             svgstr = f.read()
         f.close()
         formatted_tex_str = highlight(self.tex_str, TexLexer(), HtmlFormatter())
