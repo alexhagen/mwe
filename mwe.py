@@ -72,7 +72,8 @@ class mwe(object):
               </div>""" % (svgstr)
         return display(HTML(htmlstr))
 
-    def export(self, filename='mwe', engine='pdflatex'):
+    def export(self, filename='mwe', engine='pdflatex', options='',
+               steps=[]):
         """ compiles the LaTeX into an ``.svg``
 
         ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf`` and
@@ -99,9 +100,11 @@ class mwe(object):
             f.write(tex_str)
         f.close()
         cwd = os.getcwd()
-        cmdstr = "%s /tmp/%s.tex --output-dir=%s" % (engine, filename, cwd)
-        #print cmdstr
+        cmdstr = "%s %s /tmp/%s.tex --output-dir=%s" % (engine, options, filename, cwd)
         os.system(cmdstr)
+        for step in steps:
+            print step
+            os.system(step)
         cmdstr = "pdf2svg %s.pdf %s.svg" % (filename, filename)
         #print cmdstr
         os.system(cmdstr)
