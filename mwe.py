@@ -73,13 +73,20 @@ class mwe(object):
         return display(HTML(htmlstr))
 
     def export(self, filename='mwe', engine='pdflatex', options='',
-               steps=[]):
-        """ compiles the LaTeX into an ``.svg``
+               steps=[], interaction=''):
+        """Compiles the LaTeX into an ``.svg``
 
-        ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf`` and
-        then uses ``pdf2svg`` to convert this into an svg. The LaTeX source is
-        written into the ``/tmp`` directory, but the ``mwe.pdf`` and ``mwe.svg``
-        files will be compiled in the current directory.
+        ``export`` calls ``pdflatex`` to convert the ``mwe`` into a ``.pdf``
+        and then uses ``pdf2svg`` to convert this into an svg. The LaTeX source
+        is written into the ``/tmp`` directory, but the ``mwe.pdf`` and
+        ``mwe.svg`` files will be compiled in the current directory.
+
+        inputs:
+            - filename:
+            - engine:
+            - options:
+            - steps:
+            - interaction:
         """
         self.filename = filename
         tex_str = ''
@@ -100,7 +107,8 @@ class mwe(object):
             f.write(tex_str)
         f.close()
         cwd = os.getcwd()
-        cmdstr = "%s %s /tmp/%s.tex --output-dir=%s" % (engine, options, filename, cwd)
+        cmdstr = "%s %s %s /tmp/%s.tex --output-dir=%s" \
+            % (engine, options, interaction, filename, cwd)
         os.system(cmdstr)
         for step in steps:
             print step
