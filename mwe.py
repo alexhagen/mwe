@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 import os.path
@@ -7,6 +8,7 @@ from IPython.core.magic import (register_line_magic, register_cell_magic,
 from pygments import highlight
 from pygments.lexers import TexLexer
 from pygments.formatters import HtmlFormatter
+import itertools
 
 class mwe(object):
     """ ``mwe`` initializes a minimum working example for LaTeX.
@@ -22,6 +24,7 @@ class mwe(object):
     :param preamble: Valid LaTeX source code
     :returns: An ``mwe`` object for additional editing or exporting.
     """
+    __counter__ = itertools.count()
     def __init__(self, text=None,
                  texcls="article", texclsopts={"letterpaper": None},
                  preamble=None):
@@ -34,6 +37,7 @@ class mwe(object):
         self.body = ""
         if text is not None:
             self.add_to_body(text)
+        self.__number__ = next(self.__counter__)
 
     def add_to_body(self, text):
         """ adds valid LaTeX source into the body
@@ -70,6 +74,12 @@ class mwe(object):
               <div style='width:80%%; border: solid 1px black;'>
                 <img src='data:image/svg+xml;charset=UTF-8,%s' width="100%%"/>
               </div>""" % (svgstr)
+        self.__number__ = next(self.__counter__)
+        htmlstr = \
+            """
+              <div style='width:80%%; border: solid 1px black;'>
+                <img src='%s' width="100%%"/>
+              </div>""" % ("%s.svg?%d" % (self.filename, self.__number__))
         return display(HTML(htmlstr))
 
     def export(self, filename='mwe', engine='pdflatex', options='',
@@ -91,7 +101,7 @@ class mwe(object):
         self.filename = filename
         tex_str = ''
         optstr = ''
-        for key, val in self.texclsopts.iteritems():
+        for key, val in self.texclsopts.items():
             if val is None:
                 optstr += '%s,' % key
             else:
@@ -111,7 +121,7 @@ class mwe(object):
             % (engine, options, interaction, filename, cwd)
         os.system(cmdstr)
         for step in steps:
-            print step
+            print (step)
             os.system(step)
         cmdstr = "pdf2svg %s.pdf %s.svg" % (filename, filename)
         #print cmdstr
