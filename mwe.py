@@ -9,6 +9,7 @@ from pygments import highlight
 from pygments.lexers import TexLexer
 from pygments.formatters import HtmlFormatter
 import itertools
+import numpy as np
 
 class mwe(object):
     """ ``mwe`` initializes a minimum working example for LaTeX.
@@ -124,7 +125,8 @@ class mwe(object):
             print (step)
             os.system(step)
         cmdstr = "pdf2svg %s.pdf %s.svg" % (filename, filename)
-        #print cmdstr
+        #cmdstr = 'inkscape --without-gui --file {pdf_file}.pdf --export-text-to-path --export-plain-svg={svg_file}.svg'.format(pdf_file=filename, svg_file=filename)
+        #print (cmdstr)
         os.system(cmdstr)
         #os.system('rm -f %s.aux %s.log' % (filename, filename))
         return self
@@ -135,9 +137,7 @@ class mwe(object):
         ``show_side_by_side`` exports the ``mwe`` into an ``.svg``, and then
         shows it in the Jupyter notebook as a side-by-side of the source code,
         highlighted with Pygments, and the ``.svg`` resulting page."""
-        with open("%s.svg" % self.filename, 'r') as f:
-            svgstr = f.read()
-        f.close()
+        svgstr = "%s.svg?id=%d" % (self.filename, np.random.randint(0, 1e9))
         formatted_tex_str = highlight(self.tex_str, TexLexer(), HtmlFormatter())
         htmlstr = \
             """
@@ -151,7 +151,7 @@ class mwe(object):
                 </pre>
               </div>
               <div style='float:right; width:49%%; border: solid 1px black;'>
-                <img src='data:image/svg+xml;charset=UTF-8,%s' width="100%%"/>
+                <img src='%s' width="100%%"/>
               </div>
 	      </div>""" % (HtmlFormatter().get_style_defs('.highlight'), formatted_tex_str, svgstr)
         return display(HTML(htmlstr))
